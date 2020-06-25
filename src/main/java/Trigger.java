@@ -38,6 +38,8 @@ public class Trigger extends Task {
                     WriteAppend.write("mainLog.txt", "\n" + LoadFile.splitWords2[0] + " Total time learned: " + (Integer.toString(Integer.parseInt(LoadFile.splitWords2[1]) / 60)) + "hour(s) and " + (Integer.toString(Integer.parseInt(LoadFile.splitWords2[1]) % 60)) + " minute(s).");
                     LoadFile.timeAtLoad = 0;
                     TimeCounter.counter = 0;
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -51,6 +53,24 @@ public class Trigger extends Task {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                //Here we are updating info for chart
+
+                LoadMainLog.lines.clear();
+                TextToInt.lastSeven.clear();
+                LoadMainLog.readFile();
+                TextToInt.getLastSevenDays();
+                TextToInt.findHours();
+                TextToInt.findMinutes();
+                TextToInt.roundHours();
+                TextToInt.findDays();
+                TextToInt.getAverageHours();
+
+
+
+
+
+
             }
             Thread.sleep(1000);
             if (SceneController.currentState) {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneControllerChart">
+   <children>
+      <Label layoutX="14.0" layoutY="18.0" prefHeight="27.0" prefWidth="267.0" text="StudyCheck - Last Seven Days:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="743.0" layoutX="109.0" layoutY="60.0" startX="-100.0" />
+      <Button fx:id="exit" layoutX="817.0" layoutY="18.0" mnemonicParsing="false" onAction="#closeStage" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <BarChart fx:id="studyChart" layoutX="17.0" layoutY="84.0" prefHeight="411.0" prefWidth="825.0" verticalGridLinesVisible="false">
+        <xAxis>
+          <CategoryAxis label="Days" side="BOTTOM" fx:id="x">
+               <tickLabelFont>
+                  <Font size="14.0" />
+               </tickLabelFont></CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" animated="false" label="Study Hours" minorTickLength="8.0" side="LEFT" tickLabelGap="5.0" tickLength="12.0" upperBound="10.0">
+               <tickLabelFont>
+                  <Font name="System Bold" size="14.0" />
+               </tickLabelFont></NumberAxis>
+        </yAxis>
+      </BarChart>
+      <Label layoutX="57.0" layoutY="469.0" prefHeight="25.0" prefWidth="95.0" text="Daily average:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="dailyAverage" layoutX="149.0" layoutY="469.0" prefHeight="25.0" prefWidth="95.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

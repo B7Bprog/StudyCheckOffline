@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,9 +31,20 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws FileNotFoundException {
 
         //loadTime();
+
+        LoadMainLog.readFile();
+        TextToInt.getLastSevenDays();
+        TextToInt.findHours();
+        TextToInt.findMinutes();
+        TextToInt.roundHours();
+        TextToInt.findDays();
+        TextToInt.getAverageHours();
+        TextToInt.viewHours();
+        TextToInt.viewMinutes();
+
 
 
         this.stage = stage;
