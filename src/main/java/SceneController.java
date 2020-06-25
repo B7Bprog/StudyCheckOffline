@@ -48,6 +48,7 @@ public class SceneController implements Initializable {
     protected static boolean currentState = false;
     private static TextField myGoal;
     protected static Label myCurrentGoal;
+    private static Label myPerformanceLabel;
 
 
     //private static int freshGoal;
@@ -60,6 +61,8 @@ public class SceneController implements Initializable {
         }
     }*/
 
+    @FXML
+    private Label performanceLabel;
 
     @FXML
     private Label display;
@@ -110,6 +113,7 @@ public class SceneController implements Initializable {
         mySave = save;
         myGoal = goal;
         myCurrentGoal = currentGoal;
+        myPerformanceLabel = performanceLabel;
 
 
         Trigger trigger = new Trigger();
@@ -125,6 +129,11 @@ public class SceneController implements Initializable {
         }
 
         setMyCurrentGoal();
+        try {
+            setAveragePerformanceLabel();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -182,20 +191,44 @@ public class SceneController implements Initializable {
 
     }
 
-    public void popup() {
+    public void popup() throws FileNotFoundException {
         dialogStage = new Stage();
         System.out.println("in popup");
         //Stage dialogStage = new Stage();
         Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("chart.fxml"));
-        }catch (IOException e){
-            throw new RuntimeException(e);
+        ReadGoal.readMyGoal();
 
-        }
+
+
+            try {
+                root = FXMLLoader.load(getClass().getResource("chart.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+
+            }
+
+
+
+
+
+
         //dialogStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("chartStyle.css");
+
+
+
+        if(TextToInt.averageDaily < ReadGoal.freshGoal-2) {
+            scene.getStylesheets().add("chartStyleRed.css");
+        }
+        else if(TextToInt.averageDaily >= ReadGoal.freshGoal){
+            scene.getStylesheets().add("chartStyleGreen.css");
+        }
+        else{
+            scene.getStylesheets().add("chartStyleOrange.css");
+        }
+
+
+
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
         dialogStage.initStyle(StageStyle.UNDECORATED);
@@ -208,9 +241,23 @@ public class SceneController implements Initializable {
         SaveGoal.SaveMyGoal("myGoal.txt",Integer.parseInt(goal.getText()));
         ReadGoal.readMyGoal();
         setMyCurrentGoal();
+        setAveragePerformanceLabel();
     }
     public static void setMyCurrentGoal(){
         myCurrentGoal.setText((Integer.toString(ReadGoal.freshGoal)) +" hours/day.");
+    }
+
+    public static void setAveragePerformanceLabel() throws FileNotFoundException {
+        ReadGoal.readMyGoal();
+        if(TextToInt.averageDaily < ReadGoal.freshGoal-2) {
+            myPerformanceLabel.setText("Very Poor!");
+        }
+        else if(TextToInt.averageDaily >= ReadGoal.freshGoal){
+            myPerformanceLabel.setText("Excellent");
+        }
+        else{
+            myPerformanceLabel.setText("Weak");
+        }
     }
 
     public void exit() {

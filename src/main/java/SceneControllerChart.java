@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,8 +20,8 @@ public class SceneControllerChart implements Initializable {
 
     //static Stage dialogStage = new Stage();
 
-    String host = "86.1.51.222";
-    DatagramSocket socket = new DatagramSocket();
+    //String host = "86.1.51.222";
+    //DatagramSocket socket = new DatagramSocket();
 
 
     static boolean checkBoxChecked = false;

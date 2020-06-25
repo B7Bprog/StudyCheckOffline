@@ -38,6 +38,12 @@ public class TextToInt {
                     || tempLine.charAt(32) == '1'
                     || tempLine.charAt(32) == '2'
                     || tempLine.charAt(32) == '3'
+                    || tempLine.charAt(32) == '4'
+                    || tempLine.charAt(32) == '5'
+                    || tempLine.charAt(32) == '6'
+                    || tempLine.charAt(32) == '7'
+                    || tempLine.charAt(32) == '8'
+                    || tempLine.charAt(32) == '9'
 
 
             ) {

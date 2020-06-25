@@ -48,14 +48,18 @@
          </font>
       </Label>
       <CheckBox fx:id="checkBox" layoutX="102.0" layoutY="64.0" mnemonicParsing="false" onAction="#checkBox" prefHeight="17.0" prefWidth="12.0" />
-      <Label fx:id="performanceLabel" layoutX="123.0" layoutY="229.0" prefHeight="25.0" prefWidth="66.0">
+      <Label fx:id="performanceLabel" alignment="TOP_LEFT" layoutX="113.0" layoutY="230.0" prefHeight="25.0" prefWidth="79.0" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
       <Label layoutX="18.0" layoutY="269.0" prefHeight="17.0" prefWidth="92.0" text="Set goal (h/day):" />
       <TextField fx:id="goal" layoutX="109.0" layoutY="265.0" prefHeight="25.0" prefWidth="35.0" promptText="00" />
-      <Button fx:id="save" layoutX="161.0" layoutY="265.0" mnemonicParsing="false" onAction="#saveGoal" text="Save" />
+      <Button fx:id="save" layoutX="161.0" layoutY="265.0" mnemonicParsing="false" onAction="#saveGoal" text="Save">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <Label layoutX="18.0" layoutY="301.0" text="Current goal (h):" />
       <Label fx:id="currentGoal" layoutX="108.0" layoutY="301.0" prefHeight="17.0" prefWidth="92.0" />
    </children>
