@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="228.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
+   <children>
+      <Label layoutX="42.0" layoutY="9.0" prefHeight="45.0" prefWidth="112.0" text="StudyCheck - Offline" wrapText="true">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ScrollPane hbarPolicy="NEVER" layoutX="38.0" layoutY="149.0" prefHeight="173.0" prefWidth="151.0">
+        <content>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="5005.0" prefWidth="157.0">
+               <children>
+                  <Label fx:id="display" alignment="TOP_LEFT" layoutX="2.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="5000.0" prefWidth="133.0" wrapText="true" >
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Label>
+
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="exit" layoutX="166.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="24.0" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Circle fx:id="sign" fill="GREY" layoutX="181.0" layoutY="335.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="42.0" layoutY="61.0" prefHeight="17.0" prefWidth="112.0" text="My state:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="113.0" prefHeight="17.0" prefWidth="112.0" text="Partner's state:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="myState" arcHeight="5.0" arcWidth="5.0" fill="RED" height="35.0" layoutX="156.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+      <Rectangle fx:id="partnerState" arcHeight="5.0" arcWidth="5.0" fill="GREY" height="35.0" layoutX="155.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+      <CheckBox fx:id="checkBox" layoutX="118.0" layoutY="63.0" mnemonicParsing="false" onAction="#checkBox" prefHeight="17.0" prefWidth="12.0" />
+      <Label layoutX="37.0" layoutY="326.0" text="Server state:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
