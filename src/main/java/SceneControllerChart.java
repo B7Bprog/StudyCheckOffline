@@ -43,6 +43,7 @@ public class SceneControllerChart implements Initializable {
     protected static boolean currentState = false;
     private static Label myDailyAverage;
 
+
     @FXML
     private Label display;
 
@@ -134,6 +135,7 @@ public class SceneControllerChart implements Initializable {
     }
     public void closeStage(){
         SceneController.dialogStage.hide();
+        SceneController.stageIsOff = true;
     }
 
     public void exit() {

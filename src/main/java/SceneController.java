@@ -3,10 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -49,6 +46,9 @@ public class SceneController implements Initializable {
     private static TextField myGoal;
     protected static Label myCurrentGoal;
     private static Label myPerformanceLabel;
+    private static ProgressBar myProgressBar;
+    static long currentTime = 0;
+    protected static boolean stageIsOff = true;
 
 
     //private static int freshGoal;
@@ -89,6 +89,9 @@ public class SceneController implements Initializable {
     private Circle sign;
 
     @FXML
+    private ProgressBar progressBar;
+
+    @FXML
 
     private Button exit;
 
@@ -114,6 +117,11 @@ public class SceneController implements Initializable {
         myGoal = goal;
         myCurrentGoal = currentGoal;
         myPerformanceLabel = performanceLabel;
+        myProgressBar = progressBar;
+
+
+
+
 
 
         Trigger trigger = new Trigger();
@@ -134,6 +142,26 @@ public class SceneController implements Initializable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+
+
+        //System.out.println("This is time here: " + time);
+        /*try {
+            int goal = getFreshGoal();
+            System.out.println("This is progress parts: " + time + goal);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
+
+        //((((getCurrentTime() * 100) / (getFreshGoal()))) / 100)
+
+
+        try {
+            setProgressBar();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -192,12 +220,12 @@ public class SceneController implements Initializable {
     }
 
     public void popup() throws FileNotFoundException {
-        dialogStage = new Stage();
-        System.out.println("in popup");
-        //Stage dialogStage = new Stage();
-        Parent root = null;
-        ReadGoal.readMyGoal();
-
+        if(stageIsOff) {
+            dialogStage = new Stage();
+            System.out.println("in popup");
+            //Stage dialogStage = new Stage();
+            Parent root = null;
+            ReadGoal.readMyGoal();
 
 
             try {
@@ -208,40 +236,38 @@ public class SceneController implements Initializable {
             }
 
 
+            //dialogStage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(root);
 
 
+            if (TextToInt.averageDaily < ReadGoal.freshGoal - 2) {
+                scene.getStylesheets().add("chartStyleRed.css");
+            } else if (TextToInt.averageDaily >= ReadGoal.freshGoal) {
+                scene.getStylesheets().add("chartStyleGreen.css");
+            } else {
+                scene.getStylesheets().add("chartStyleOrange.css");
+            }
 
 
-        //dialogStage.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.setResizable(false);
+            dialogStage.initStyle(StageStyle.UNDECORATED);
+
+            dialogStage.show();
+
+            SceneControllerChart.setDailyAverage();
 
 
-
-        if(TextToInt.averageDaily < ReadGoal.freshGoal-2) {
-            scene.getStylesheets().add("chartStyleRed.css");
         }
-        else if(TextToInt.averageDaily >= ReadGoal.freshGoal){
-            scene.getStylesheets().add("chartStyleGreen.css");
-        }
-        else{
-            scene.getStylesheets().add("chartStyleOrange.css");
-        }
+        stageIsOff = false;
 
-
-
-        dialogStage.setScene(scene);
-        dialogStage.setResizable(false);
-        dialogStage.initStyle(StageStyle.UNDECORATED);
-
-        dialogStage.show();
-
-        SceneControllerChart.setDailyAverage();
     }
     public void saveGoal() throws IOException {
         SaveGoal.SaveMyGoal("myGoal.txt",Integer.parseInt(goal.getText()));
         ReadGoal.readMyGoal();
         setMyCurrentGoal();
         setAveragePerformanceLabel();
+        setProgressBar();
     }
     public static void setMyCurrentGoal(){
         myCurrentGoal.setText((Integer.toString(ReadGoal.freshGoal)) +" hours/day.");
@@ -253,12 +279,36 @@ public class SceneController implements Initializable {
             myPerformanceLabel.setText("Very Poor!");
         }
         else if(TextToInt.averageDaily >= ReadGoal.freshGoal){
-            myPerformanceLabel.setText("Excellent");
+            myPerformanceLabel.setText("Excellent!");
         }
         else{
             myPerformanceLabel.setText("Weak");
         }
     }
+
+    public static void setProgressBar() throws FileNotFoundException {
+        if(getFreshGoal() != 0) {
+           // System.out.println("We're in set progress bar method");
+            myProgressBar.setProgress((((getCurrentTime() * 100) / (getFreshGoal()))) / 100f);
+
+            //System.out.println("This is calculation: " + ((((getCurrentTime() * 100) / (getFreshGoal()))))/100f);
+
+
+            //System.out.println("Progress value is: " + getCurrentTime() + " and " + (getFreshGoal()));
+        }
+
+    }
+
+    public static long getCurrentTime() throws FileNotFoundException {
+        LoadFile.readFile();
+        return Long.parseLong(LoadFile.splitWords2[1]);
+
+    }
+    public static int getFreshGoal() throws FileNotFoundException {
+        ReadGoal.readMyGoal();
+        return (ReadGoal.freshGoal * 60);
+    }
+
 
     public void exit() {
         //guiMessageSender.sendState(false);

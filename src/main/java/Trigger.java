@@ -91,7 +91,7 @@ public class Trigger extends Task {
                         //FX Stuff done here
                         LoadFile.readFile();
                         SceneController.setLabelText("Today's Study Time: \n" + "------------------------" + "\n" + (Long.toString(Long.parseLong(LoadFile.splitWords2[1]) / 60)) + " hour(s) and " + (Long.toString(Long.parseLong(LoadFile.splitWords2[1]) % 60)) + " min(s)");
-
+                        SceneController.setProgressBar();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } finally {
