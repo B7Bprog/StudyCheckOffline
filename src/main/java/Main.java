@@ -42,8 +42,8 @@ public class Main extends Application {
         TextToInt.roundHours();
         TextToInt.findDays();
         TextToInt.getAverageHours();
-        TextToInt.viewHours();
-        TextToInt.viewMinutes();
+        //TextToInt.viewHours();
+        //TextToInt.viewMinutes();
 
 
 

@@ -110,9 +110,9 @@ public class TextToInt {
         for(int i = 0; i < hours.length; i++){
             sum += hours[i];
         }
-        System.out.println("This is sum: " + sum);
+        //System.out.println("This is sum: " + sum);
         averageDaily = Math.round((sum/7.0f));
-        System.out.println("This is daily average: " + averageDaily);
+        //System.out.println("This is daily average: " + averageDaily);
     }
 
 

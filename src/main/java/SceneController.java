@@ -168,11 +168,7 @@ public class SceneController implements Initializable {
     public static void setLabelText(String text){
         myDisplay.setText(text);
     }
-    public static void setLabelOffline(){
-        myDisplay.setText("");
-        myDisplay.setText("Server is offline." + "\n" + "Shutdown in 50 seconds.");
 
-    }
 
 
 
@@ -222,7 +218,7 @@ public class SceneController implements Initializable {
     public void popup() throws FileNotFoundException {
         if(stageIsOff) {
             dialogStage = new Stage();
-            System.out.println("in popup");
+            //System.out.println("in popup");
             //Stage dialogStage = new Stage();
             Parent root = null;
             ReadGoal.readMyGoal();

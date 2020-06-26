@@ -25,12 +25,12 @@ public class Trigger extends Task {
             SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
             Date date1 = new Date();
 
-            System.out.println("In trigger middle");
+            //System.out.println("In trigger middle");
 
             String totalTime = Long.toString(LoadFile.timeAtLoad + /*timePassed*/ TimeCounter.counter);
 
-            System.out.println("time at load is: " + LoadFile.timeAtLoad);
-            System.out.println("Total time now is: " + totalTime);
+            //System.out.println("time at load is: " + LoadFile.timeAtLoad);
+            //System.out.println("Total time now is: " + totalTime);
             Thread.sleep(20);
 
             if (!LoadFile.splitWords2[0].equals(formatter1.format(date1))) {
@@ -77,7 +77,7 @@ public class Trigger extends Task {
 
                 if (LoadFile.splitWords2[0].equals(formatter1.format(date1))) {
 
-                    System.out.println("Writing file");
+                    //System.out.println("Writing file");
                     WriteFile.write("currentLog.txt", formatter1.format(date1) + ";" + totalTime);
                     currentTimeMinutes = startTimeMinutes;
                 }

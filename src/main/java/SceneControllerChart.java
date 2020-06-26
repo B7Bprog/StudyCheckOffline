@@ -125,11 +125,7 @@ public class SceneControllerChart implements Initializable {
 
     }
 
-    public static void setLabelOffline(){
-        myDisplay.setText("");
-        myDisplay.setText("Server is offline." + "\n" + "Shutdown in 50 seconds.");
 
-    }
     public static void setDailyAverage(){
         myDailyAverage.setText(Integer.toString(TextToInt.averageDaily) + " hours.");
     }
